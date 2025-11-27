@@ -1,11 +1,37 @@
+// Jenkinsfile pour le TP 3.5 - Premier pipeline déclaratif
+// Objectif : démontrer un pipeline minimal avec un seul stage de build simple.
+
 pipeline {
+    // L'agent 'any' signifie que le pipeline peut s'exécuter sur n'importe quel agent disponible.
     agent any
 
     stages {
+
+        // Stage unique pour ce TP : Build
         stage('Build') {
             steps {
-                echo 'Début du pipeline TP 3.5 - Stage Build'
+
+                // Message dans les logs Jenkins au niveau du pipeline
+                echo 'TP 3.5 - Exécution du stage Build (Pipeline déclaratif)'
+
+                // Exécution d'un script shell simple pour inspecter l'environnement
+                sh '''
+                    echo "=== Informations environnement Jenkins ==="
+                    echo "Utilisateur courant : $(whoami)"
+                    echo "Répertoire courant  : $(pwd)"
+                    echo "Contenu du workspace :"
+                    ls -al
+
+                    echo "=== Fin du script de build simple ==="
+                '''
             }
+        }
+    }
+
+    // Bloc 'post' optionnel pour ce TP (peut être étendu plus tard)
+    post {
+        always {
+            echo 'TP 3.5 - Fin du pipeline (bloc post always)'
         }
     }
 }
