@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Début du pipeline TP 3.5 - Stage Build'
+            }
+        }
+    }
+}
